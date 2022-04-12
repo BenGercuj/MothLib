@@ -11,6 +11,7 @@ class WidgetBase
         WindowBase *_mainw;
         int _posx, _posy, _sizex, _sizey;
         std::string _name;
+        bool _focused;
 
     public:
         WidgetBase(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name);

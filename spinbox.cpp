@@ -83,3 +83,8 @@ void SpinBox::event_handler(event ev)
     }
 
 }
+
+std::vector<std::string> SpinBox::returnval()
+{
+
+}

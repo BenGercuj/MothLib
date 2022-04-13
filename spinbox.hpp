@@ -14,6 +14,7 @@ class SpinBox : public WidgetBase
         int selected_spinner(int mx, int my);
         void draw();
         void event_handler(genv::event ev);
+        std::vector<std::string> returnval();
 };
 
 #endif // SPINBOX_HPP

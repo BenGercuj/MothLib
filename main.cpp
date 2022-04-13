@@ -1,7 +1,4 @@
-#include "graphics.hpp"
-#include "widgetbase.hpp"
-#include "windowbase.hpp"
-#include "window.hpp"
+#include "mothlib.hpp"
 
 int main()
 {

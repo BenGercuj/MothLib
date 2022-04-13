@@ -17,6 +17,7 @@ class ListBox : public WidgetBase
         bool is_selected(int mx, int my);
         void draw();
         void event_handler(genv::event ev);
+        std::vector<std::string> returnval();
 };
 
 #endif // LISTBOX_HPP

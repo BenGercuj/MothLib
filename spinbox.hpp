@@ -6,6 +6,7 @@
 class SpinBox : public WidgetBase
 {
     int _val, _minval, _maxval;
+    bool _changed;
 
     public:
         SpinBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, int val, int minval, int maxval);

@@ -1,8 +1,9 @@
 #include "spinbox.hpp"
+#include <vector>
 
 using namespace genv;
 
-SpinBox::SpinBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, int val, int minval, int maxval) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _val(val), _minval(minval), _maxval(maxval) { }
+SpinBox::SpinBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, int val, int minval, int maxval) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _val(val), _minval(minval), _maxval(maxval), _changed(false) { }
 
 bool SpinBox::is_selected(int mx, int my)
 {
@@ -67,24 +68,33 @@ void SpinBox::event_handler(event ev)
 {
     _focused = true;
 
-    if (ev.keycode == key_up && _val < _maxval) { _val++; }
+    if (ev.keycode == key_up && _val < _maxval) { _val++; _changed = true; }
 
-    else if (ev.keycode == key_down && _val > _minval) { _val--; }
+    else if (ev.keycode == key_down && _val > _minval) { _val--; _changed = true; }
 
-    else if (ev.keycode == key_pgup && _val+10 <= _maxval) { _val += 10; }
+    else if (ev.keycode == key_pgup && _val+10 <= _maxval) { _val += 10; _changed = true; }
 
-    else if (ev.keycode == key_pgdn && _val-10 >= _minval) { _val -= 10; }
+    else if (ev.keycode == key_pgdn && _val-10 >= _minval) { _val -= 10; _changed = true; }
 
     else if (ev.button == btn_left)
     {
-        if (selected_spinner(ev.pos_x, ev.pos_y) == 1 && _val > _minval) { _val--; }
+        if (selected_spinner(ev.pos_x, ev.pos_y) == 1 && _val > _minval) { _val--; _changed = true; }
 
-        else if (selected_spinner(ev.pos_x, ev.pos_y) == 2 && _val < _maxval) { _val++; }
+        else if (selected_spinner(ev.pos_x, ev.pos_y) == 2 && _val < _maxval) { _val++; _changed = true; }
     }
 
 }
 
 std::vector<std::string> SpinBox::returnval()
 {
+    std::vector<std::string> val;
+    if (_changed)
+    {
+        val = { std::to_string(_val), "int", _name };
+        _changed = false;
+    }
 
+    else { val = { "none_selected", "void", _name }; }
+
+    return val;
 }

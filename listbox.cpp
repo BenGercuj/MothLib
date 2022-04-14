@@ -77,5 +77,9 @@ void ListBox::event_handler(event ev)
 
 std::vector<std::string> ListBox::returnval()
 {
+    std::vector<std::string> val;
+    if (_selected != -1) { val = { _values[_selected], "string", _name }; }
 
+    else { val = { "none_selected", "void", _name }; }
+    return val;
 }

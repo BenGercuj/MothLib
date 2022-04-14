@@ -1,21 +1,34 @@
 #include "windowbase.hpp"
+#include <fstream>
 
 using namespace genv;
 
 void WindowBase::event_loop() {
     event ev;
-    int focus = -1;
+    int focus = -1; bool did_event = false;
     while(gin >> ev && ev.keycode != key_escape )
     {
         if (ev.button==btn_left)
         {
             for (size_t i=0;i<widget_list.size();i++)
             {
-                if (widget_list[i]->is_selected(ev.pos_x, ev.pos_y)) { focus = i; }
+                if (widget_list[i]->is_selected(ev.pos_x, ev.pos_y)) { focus = i; did_event = true; }
             }
         }
 
         if (focus!=-1) { widget_list[focus]->event_handler(ev); }
+
+        if (focus != -1 && did_event)
+        {
+            std::vector<std::string> val;
+            val = widget_list[focus]->returnval();
+
+            std::ofstream of("log.txt", std::_S_app);
+            if (val[1] != "void") { of << "Registered value: " << val[0] << ", type: " << val[1] << ", from: " << val[2] << std::endl; }
+            did_event = false;
+
+            of.close();
+        }
 
         for (WidgetBase * w : widget_list) { w->draw(); }
 

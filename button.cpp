@@ -1,9 +1,7 @@
 #include "button.hpp"
-#include <iostream>
-
 using namespace genv;
 
-Button::Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(false), _changed(false) { }
+Button::Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void()> f) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(false), _changed(false), _text(text), _f(f) { }
 
 bool Button::is_selected(int mx, int my)
 {
@@ -25,9 +23,19 @@ void Button::draw()
 
 void Button::event_handler(event ev)
 {
-    if (ev.button == btn_left || ev.keycode == key_space) { _value = true; _changed = true; }
+    if (ev.button == btn_left || ev.keycode == key_space)
+    {
+        _value = true;
 
-    else if (ev.button == -btn_left || ev.keycode == -key_space) { _value = false; _changed = true; }
+        if (!_changed)
+        {
+            _f();
+        }
+
+        _changed = true;
+    }
+
+    else if (ev.button == -btn_left || ev.keycode == -key_space) { _value = false; _changed = false; }
 
     _focused = true;
 }
@@ -38,6 +46,7 @@ std::vector<std::string> Button::returnval()
     if (_changed)
     {
         val = { std::to_string(_value), "bool", _name };
+        _f();
 
         _changed = false;
     }

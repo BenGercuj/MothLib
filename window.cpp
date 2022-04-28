@@ -10,5 +10,7 @@ Window::Window()
 
     lb = new ListBox(this, 250, 325, 100, 50, "listbox2", {"hatos", "kettes", "egyes", "tizes"});
 
+    btn = new Button(this, 250, 50, 50, 25, "button1");
+
     for (WidgetBase *w: widget_list) { w->draw(); }
 }

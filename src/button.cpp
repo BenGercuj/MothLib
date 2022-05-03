@@ -1,4 +1,4 @@
-#include "button.hpp"
+#include "../include/button.hpp"
 using namespace genv;
 
 Button::Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void()> f) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(false), _changed(false), _text(text), _f(f) { }

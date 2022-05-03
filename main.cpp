@@ -1,4 +1,4 @@
-#include "mothlib.hpp"
+#include "../include/mothlib.hpp"
 
 int main()
 {

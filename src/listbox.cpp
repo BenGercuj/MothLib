@@ -1,6 +1,6 @@
 // Switch on word wrap and prepare for a spaghetti
 
-#include "listbox.hpp"
+#include "../include/listbox.hpp"
 
 using namespace genv;
 

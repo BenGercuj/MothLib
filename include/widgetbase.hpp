@@ -11,10 +11,10 @@ class WidgetBase
     protected:
         WindowBase *_mainw;
         int _posx, _posy, _sizex, _sizey;
-        std::string _name;
         bool _focused;
 
     public:
+        std::string _name;
         WidgetBase(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name);
         virtual ~WidgetBase();
 

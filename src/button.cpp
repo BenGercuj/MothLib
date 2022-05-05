@@ -1,6 +1,8 @@
 #include "../include/button.hpp"
 using namespace genv;
 
+#include <iostream>
+
 Button::Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void()> f) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(false), _changed(false), _text(text), _f(f) { }
 
 bool Button::is_selected(int mx, int my)
@@ -27,10 +29,7 @@ void Button::event_handler(event ev)
     {
         _value = true;
 
-        if (!_changed)
-        {
-            _f();
-        }
+        if (!_changed) { _f(); }
 
         _changed = true;
     }
@@ -46,7 +45,6 @@ std::vector<std::string> Button::returnval()
     if (_changed)
     {
         val = { std::to_string(_value), "bool", _name };
-        _f();
 
         _changed = false;
     }

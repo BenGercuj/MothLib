@@ -14,6 +14,7 @@ class Window : public WindowBase
 
     public:
         Window();
+        void function_test();
 };
 
 #endif // WINDOW_HPP

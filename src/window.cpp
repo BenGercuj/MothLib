@@ -3,7 +3,13 @@
 
 Window::Window()
 {
-    std::function<void()> f = [](){ std::cout << "lmao"; };
+    std::function<void()> f = [this]()
+    {
+        for (WidgetBase* wb: this->widget_list)
+        {
+            std::cout << wb->_name << "\n";
+        }
+    };
 
     sb = new SpinBox(this, 250, 200, 50, 25, "spinbox1", 10, 0, 20);
 

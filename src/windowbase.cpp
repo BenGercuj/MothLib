@@ -10,10 +10,14 @@ void WindowBase::event_loop() {
     {
         if (ev.button==btn_left)
         {
+            did_event = false;
+
             for (size_t i=0;i<widget_list.size();i++)
             {
                 if (widget_list[i]->is_selected(ev.pos_x, ev.pos_y)) { focus = i; did_event = true; }
             }
+
+            if (!did_event) { focus = -1; }
         }
 
         if (focus!=-1) { widget_list[focus]->event_handler(ev); }

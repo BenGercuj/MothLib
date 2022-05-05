@@ -12,14 +12,16 @@ bool Button::is_selected(int mx, int my)
 
 void Button::draw()
 {
-    if (_focused)
+    gout << color(0, 0, 0) << move_to(_posx-2, _posy+2) << box(_sizex+9, -_sizey-9);
+
+    if (_value)
     {
-        gout << color(255, 255, 255) << move_to(_posx-2, _posy+2) << box(_sizex+9, -_sizey-9) << move_to(_posx+2, _posy-2) << color(0, 0, 0) << box(_sizex+1, -_sizey-1) << color(255, 255, 255);
+        gout << color(255, 255, 255) << move_to(_posx-2, _posy+2) << box(_sizex+9, -_sizey-9) << move_to(_posx+2, _posy-2) << color(0, 0, 0) << box(_sizex+1, -_sizey-1) << color(255, 255, 255) << move_to(_posx+_sizex/2-gout.twidth(_text)/2, _posy-_sizey/3) << text(_text);
     }
 
     else
     {
-        gout << color(255, 255, 255) << move_to(_posx, _posy) << box(_sizex+5, -_sizey-5) << move_to(_posx+2, _posy-2) << color(0, 0, 0) << box(_sizex+1, -_sizey-1) << color(255, 255, 255);
+        gout << color(255, 255, 255) << move_to(_posx, _posy) << box(_sizex+5, -_sizey-5) << move_to(_posx+2, _posy-2) << color(0, 0, 0) << box(_sizex+1, -_sizey-1) << color(255, 255, 255) << move_to(_posx+_sizex/2-gout.twidth(_text)/2, _posy-_sizey/3) << text(_text);
     }
 }
 
@@ -52,5 +54,4 @@ std::vector<std::string> Button::returnval()
     else { val = { "none_selected", "void", _name }; }
 
     return val;
-
 }

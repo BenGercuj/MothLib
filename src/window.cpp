@@ -2,7 +2,7 @@
 
 Window::Window(int winX, int winY) : WindowBase(winX, winY)
 {
-    //statictext at y=YY/5
+    st = new StaticText(this, 2, YY/5+4, 3*XX/4, YY/5, "st_result", "hihi I want to die");
     btn = new Button(this, 6+(3*XX/4), YY/5+4, XX/4-12, YY/5, "btn_div", "/", [](){});
 
     btn = new Button(this, 2, 2*YY/5, XX/4, YY/5, "btn_7", "7", [](){});

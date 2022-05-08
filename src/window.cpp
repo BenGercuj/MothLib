@@ -1,11 +1,13 @@
 #include "../include/window.hpp"
 
-Window::Window()
+Window::Window(int winX, int winY) : WindowBase(winX, winY)
 {
     std::function<void()> f = [this]()
     {
 
     };
+
+
 
 //    sb = new SpinBox(this, 250, 200, 50, 25, "spinbox1", 10, 0, 20);
 //    sb = new SpinBox(this, 175, 300, 50, 25, "spinbox2", 13, -666, 333);

@@ -3,6 +3,8 @@
 
 using namespace genv;
 
+WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY) { }
+
 void WindowBase::event_loop() {
     event ev;
     int focus = -1; bool did_event = false;

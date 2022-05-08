@@ -13,8 +13,7 @@ class Window : public WindowBase
     Button *btn;
 
     public:
-        Window();
-        void function_test();
+        Window(int winX, int winY);
 };
 
 #endif // WINDOW_HPP

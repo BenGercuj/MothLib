@@ -16,6 +16,8 @@ class Window : public WindowBase
 
     public:
         Window(int winX, int winY);
+        void InitGame(bool withComp);
+        void StartGame(bool withComp);
 };
 
 #endif // WINDOW_HPP

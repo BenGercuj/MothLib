@@ -3,7 +3,7 @@
 
 using namespace genv;
 
-WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY), _calcvalue(0) { }
+WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY) { }
 
 void WindowBase::event_loop() {
     event ev;
@@ -24,22 +24,22 @@ void WindowBase::event_loop() {
 
         if (focus!=-1) { widget_list[focus]->event_handler(ev); }
 
-        if (focus != -1 && did_event)
-        {
-            std::vector<std::string> val;
-            val = widget_list[focus]->returnval();
+//        if (focus != -1 && did_event)
+//        {
+//            std::vector<std::string> val;
+//            val = widget_list[focus]->returnval();
 
-            std::ofstream of("log.txt", std::_S_app);
-            if (val[1] != "void") { of << "Registered value: " << val[0] << ", type: " << val[1] << ", from: " << val[2] << std::endl; }
-            did_event = false;
+//            std::ofstream of("log.txt", std::_S_app);
+//            if (val[1] != "void") { of << "Registered value: " << val[0] << ", type: " << val[1] << ", from: " << val[2] << std::endl; }
+//            did_event = false;
 
-            of.close();
-        }
+//            of.close();
+//        }
 
-        for (WidgetBase *w: widget_list)
-        {
-            if (w->_name == "st_result") { w->event_handler(ev); }
-        }
+//        for (WidgetBase *w: widget_list)
+//        {
+//            if (w->_name == "st_result") { w->event_handler(ev); }
+//        }
 
         for (WidgetBase * w : widget_list) { w->draw(); }
 

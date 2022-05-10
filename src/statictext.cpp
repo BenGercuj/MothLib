@@ -36,3 +36,5 @@ void StaticText::setvalue(std::string newval)
 {
     if (newval.length() <= _limit) { _value = newval; }
 }
+
+std::string StaticText::getvalue() { return _value; }

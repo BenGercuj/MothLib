@@ -3,8 +3,8 @@
 ///HF: Számológép
 // Legyen példaprogram a vizsgához, hogy lehessen kopipasztázni
 
-const int XX = 400;
-const int YY = 400;
+const int XX = 200;
+const int YY = 200;
 
 int main()
 {

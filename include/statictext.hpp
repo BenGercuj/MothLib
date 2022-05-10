@@ -17,6 +17,7 @@ class StaticText : public WidgetBase
         std::vector<std::string> returnval();
 
         void setvalue(std::string newval);
+        std::string getvalue();
 };
 
 #endif // STATICTEXT_HPP

@@ -1,7 +1,7 @@
 #include "../include/statictext.hpp"
 using namespace genv;
 
-StaticText::StaticText(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string val) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(val), _limit(sizey/gout.twidth("a")) { }
+StaticText::StaticText(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string val, int *getval) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(val), _limit(sizey/gout.twidth("a")), _getval(getval) { }
 
 bool StaticText::is_selected(int mx, int my)
 {
@@ -23,7 +23,7 @@ void StaticText::draw()
     }
 }
 
-void StaticText::event_handler(event ev) { }
+void StaticText::event_handler(event ev) { _value = std::to_string(*_getval); }
 
 std::vector<std::string> StaticText::returnval()
 {

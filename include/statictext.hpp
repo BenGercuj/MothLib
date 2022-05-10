@@ -7,9 +7,10 @@ class StaticText : public WidgetBase
 {
     std::string _value;
     int _limit;
+    int *_getval;
 
     public:
-        StaticText(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string val);
+        StaticText(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string val, int *getval);
 
         bool is_selected(int mx, int my);
         void draw();

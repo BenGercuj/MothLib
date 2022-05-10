@@ -8,7 +8,7 @@ class WindowBase
 {
     protected:
         std::vector<WidgetBase*> widget_list;
-        int XX, YY;
+        int XX, YY; int _calcvalue;
 
     public:
         WindowBase(int winX, int winY);

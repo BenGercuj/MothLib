@@ -3,7 +3,7 @@
 
 using namespace genv;
 
-WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY) { }
+WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY), _calcvalue(0) { }
 
 void WindowBase::event_loop() {
     event ev;
@@ -34,6 +34,11 @@ void WindowBase::event_loop() {
             did_event = false;
 
             of.close();
+        }
+
+        for (WidgetBase *w: widget_list)
+        {
+            if (w->_name == "st_result") { w->event_handler(ev); }
         }
 
         for (WidgetBase * w : widget_list) { w->draw(); }

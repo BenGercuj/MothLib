@@ -19,7 +19,15 @@ Window::Window(int winX, int winY) : WindowBase(winX, winY)
 
 void Window::InitGame(bool withComp)
 {
+    for (size_t i = 0; i < widget_list.size(); i++)
+    {
+        delete widget_list[i];
+        widget_list[i] = 0;
+    }
 
+    widget_list.clear();
+
+    StartGame(withComp);
 }
 
 void Window::StartGame(bool withComp)

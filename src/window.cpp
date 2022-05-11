@@ -6,9 +6,9 @@ Window::Window(int winX, int winY) : WindowBase(winX, winY)
 {
     st = new StaticText(this, XX/2-genv::gout.twidth("Amoeba")/2, YY/4, genv::gout.twidth("Amoeba"), genv::gout.cascent()+genv::gout.cdescent(), "st_title", "Amoeba");
 
-    btn = new Button(this, XX/2-XX/4, YY/2, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_start", "Start with two players", [this](){std::cout << "Hih"; InitGame(false);});
+    btn = new Button(this, XX/2-XX/4, YY/2, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_start", "Start with two players", [this](){; InitGame(false);});
 
-    btn = new Button(this, XX/2-XX/4, YY/2+50, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_startalone", "Start with computer", [this](){std::cout << "Hih"; InitGame(true);});
+    btn = new Button(this, XX/2-XX/4, YY/2+50, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_startalone", "Start with computer", [this](){InitGame(true);});
 
     btn = new Button(this, XX/2-XX/4, YY/2+100, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_exit", "Exit", [](){exit(0);});
 
@@ -34,5 +34,17 @@ void Window::StartGame(bool withComp)
 {
     std::vector<std::vector<int>> *field = &_field;
 
-    btn = new Button(this, XX/2, YY/2, XX/20-2, YY/20-2, "btn_1", "a", [](){});
+    for (int i = 0; i < XX/20; i++)
+    {
+        for (int j = 0; j < YY/20; j++)
+        {
+            std::string name = "btn_";
+            name += std::to_string(i+j+1);
+
+            if (i == XX/20-1 && j != YY/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20, name, "", [this](){std::cout << "hit_edge_x\n";}); }
+            else if (j == YY/20-1 && i != XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20-4, name, "a", [this](){std::cout << "hit_edge_y\n";}); }
+            else if (j == YY/20-1 && i == XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20-4, name, "", [this](){std::cout << "oh yeah\n";}); }
+            else { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20, name, "", [this](){std::cout << "hit\n"; }); }
+        }
+    }
 }

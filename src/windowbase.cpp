@@ -54,6 +54,14 @@ void WindowBase::event_loop() {
 
         for (WidgetBase * w : widget_list) { w->draw(); }
 
+        for (size_t i = 0; i < _field.size(); i++)
+        {
+            for (size_t j = 0; j < _field[i].size(); j++)
+            {
+
+            }
+        }
+
         gout << refresh;
     }
 }

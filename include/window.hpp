@@ -18,6 +18,8 @@ class Window : public WindowBase
         Window(int winX, int winY);
         void InitGame(bool withComp);
         void StartGame(bool withComp);
+        void Draw();
+        void Winner(int id);
 };
 
 #endif // WINDOW_HPP

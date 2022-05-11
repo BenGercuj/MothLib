@@ -48,3 +48,13 @@ void Window::StartGame(bool withComp)
         }
     }
 }
+
+void Window::Draw()
+{
+
+}
+
+void Window::Winner(int id)
+{
+
+}

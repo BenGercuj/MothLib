@@ -41,10 +41,10 @@ void Window::StartGame(bool withComp)
             std::string name = "btn_";
             name += std::to_string(i) + "_" + std::to_string(j);
 
-            if (i == XX/20-1 && j != YY/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X";}, i, j); }
-            else if (j == YY/20-1 && i != XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20-1, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X"; }, i, j); }
-            else if (j == YY/20-1 && i == XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20-4, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X"; }, i, j); }
-            else { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X"; }, i, j); }
+            if (i == XX/20-1 && j != YY/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20, name, "", [this](int posx, int posy, int &whowasit, std::string &text){if (!_field[posx][posy]) {_field[posx][posy] = _playerid; whowasit = _playerid; if (_playerid == 1) { text = "X";} else if (_playerid == -1) { text = "O"; } _playerid *= -1; }}, i, j); }
+            else if (j == YY/20-1 && i != XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20-1, name, "", [this](int posx, int posy, int &whowasit, std::string &text){if (!_field[posx][posy]) {_field[posx][posy] = _playerid; whowasit = _playerid; if (_playerid == 1) { text = "X";} else if (_playerid == -1) { text = "O"; } _playerid *= -1; }}, i, j); }
+            else if (j == YY/20-1 && i == XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20-4, name, "", [this](int posx, int posy, int &whowasit, std::string &text){if (!_field[posx][posy]) { _field[posx][posy] = _playerid; whowasit = _playerid; if (_playerid == 1) { text = "X";} else if (_playerid == -1) { text = "O"; } _playerid *= -1; }}, i, j); }
+            else { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20, name, "", [this](int posx, int posy, int &whowasit, std::string &text){if (!_field[posx][posy]) {_field[posx][posy] = _playerid; whowasit = _playerid; if (_playerid == 1) { text = "X";} else if (_playerid == -1) { text = "O"; } _playerid *= -1; }}, i, j); }
         }
     }
 }

@@ -6,11 +6,11 @@ Window::Window(int winX, int winY) : WindowBase(winX, winY)
 {
     st = new StaticText(this, XX/2-genv::gout.twidth("Amoeba")/2, YY/4, genv::gout.twidth("Amoeba"), genv::gout.cascent()+genv::gout.cdescent(), "st_title", "Amoeba");
 
-    btn = new Button(this, XX/2-XX/4, YY/2, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_start", "Start with two players", [this](){; InitGame(false);});
+    btn = new Button(this, XX/2-XX/4, YY/2, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_start", "Start with two players", [this](int p1, int p2, int p3, std::string p4){; InitGame(false);}, -1, -1);
 
-    btn = new Button(this, XX/2-XX/4, YY/2+50, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_startalone", "Start with computer", [this](){InitGame(true);});
+    btn = new Button(this, XX/2-XX/4, YY/2+50, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_startalone", "Start with computer", [this](int p1, int p2, int p3, std::string p4){InitGame(true);}, -1, -1);
 
-    btn = new Button(this, XX/2-XX/4, YY/2+100, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_exit", "Exit", [](){exit(0);});
+    btn = new Button(this, XX/2-XX/4, YY/2+100, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_exit", "Exit", [](int p1, int p2, int p3, std::string p4){exit(0);}, -1, -1);
 
     for (WidgetBase *w: widget_list) { w->draw(); }
 }
@@ -39,12 +39,12 @@ void Window::StartGame(bool withComp)
         for (int j = 0; j < YY/20; j++)
         {
             std::string name = "btn_";
-            name += std::to_string(i+j+1);
+            name += std::to_string(i) + "_" + std::to_string(j);
 
-            if (i == XX/20-1 && j != YY/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20, name, "", [this](){std::cout << "hit_edge_x\n";}); }
-            else if (j == YY/20-1 && i != XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20-4, name, "a", [this](){std::cout << "hit_edge_y\n";}); }
-            else if (j == YY/20-1 && i == XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20-4, name, "", [this](){std::cout << "oh yeah\n";}); }
-            else { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20, name, "", [this](){std::cout << "hit\n"; }); }
+            if (i == XX/20-1 && j != YY/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X";}, i, j); }
+            else if (j == YY/20-1 && i != XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20-1, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X"; }, i, j); }
+            else if (j == YY/20-1 && i == XX/20-1) { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20-4, YY/20-4, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X"; }, i, j); }
+            else { btn = new Button(this, (i*XX/20), (j*YY/20)+YY/20+2, XX/20, YY/20, name, "", [this](int posx, int posy, int &whowasit, std::string &text){_field[posx][posy] = _playerid; whowasit = _playerid; text = "X"; }, i, j); }
         }
     }
 }

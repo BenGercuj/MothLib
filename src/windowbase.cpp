@@ -3,7 +3,7 @@
 
 using namespace genv;
 
-WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY)
+WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY), _playerid(1)
 {
     for (int i = 0; i < 20; i++)
     {

@@ -3,7 +3,7 @@ using namespace genv;
 
 #include <iostream>
 
-Button::Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void()> f) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(false), _changed(false), _text(text), _f(f) { }
+Button::Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void(int, int, int&, std::string&)> f, int fieldposx, int fieldposy) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _value(false), _changed(false), _text(text), _f(f), _fieldposx(fieldposx), _fieldposy(fieldposy), _whowasit(0) { }
 
 bool Button::is_selected(int mx, int my)
 {
@@ -23,7 +23,7 @@ void Button::event_handler(event ev)
     {
         _value = true;
 
-        if (!_changed) { _f(); }
+        if (!_changed) { _f(_fieldposx, _fieldposy, _whowasit, _text); }
 
         _changed = true;
     }

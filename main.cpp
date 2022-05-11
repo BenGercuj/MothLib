@@ -1,8 +1,7 @@
 #include "../include/mothlib.hpp"
 
-const int XX = 400;
-const int YY = 400;
-
+const int XX = 419;
+const int YY = 419;
 int main()
 {
     genv::gout.open(XX, YY);

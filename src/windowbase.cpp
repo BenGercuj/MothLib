@@ -3,7 +3,18 @@
 
 using namespace genv;
 
-WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY) { }
+WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY)
+{
+    for (int i = 0; i < 20; i++)
+    {
+        std::vector<int> holder;
+        for (int j = 0; j < 20; j++)
+        {
+            holder.push_back(0);
+        }
+        _field.push_back(holder);
+    }
+}
 
 void WindowBase::event_loop() {
     event ev;
@@ -22,7 +33,7 @@ void WindowBase::event_loop() {
             if (!did_event) { focus = -1; }
         }
 
-        if (focus!=-1) { widget_list[focus]->event_handler(ev); }
+        if (focus!=-1 && widget_list[focus]) { widget_list[focus]->event_handler(ev); }
 
 //        if (focus != -1 && did_event)
 //        {

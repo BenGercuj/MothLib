@@ -55,6 +55,7 @@ void WindowBase::event_loop() {
 
         for (WidgetBase * w : widget_list) { w->draw(); }
 
+        // Checker
         int counter = 0;
         for (size_t i = 0; i < _field.size(); i++)
         {
@@ -76,8 +77,23 @@ void WindowBase::event_loop() {
                             else { break; }
                         }
                     }
-                    if (counter >= 5) { std::cout << "w i n"; }
-                    counter = 0;
+                    if (counter >= 5) { std::cout << "w i n"; i = _field.size(); break; }
+                    counter = 1;
+
+                    if (20-(int)j >= 5)
+                    {
+                        for (int x = j+1; x < j+5; x++)
+                        {
+                            if (_field[i][x] == holder)
+                            {
+                                counter++;
+                            }
+
+                            else { break; }
+                        }
+                    }
+                    if (counter >= 5) { std::cout << "w i n"; i = _field.size(); break; }
+                    counter = 1;
                 }
             }
         }

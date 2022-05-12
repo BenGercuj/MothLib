@@ -4,7 +4,7 @@
 #include "widgetbase.hpp"
 #include <vector>
 
-const int textheight = genv::gout.cascent()+genv::gout.cdescent();
+inline int textheight() { genv::gout.cascent()+genv::gout.cdescent(); }
 
 class ListBox : public WidgetBase
 {

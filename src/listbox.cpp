@@ -4,7 +4,7 @@
 
 using namespace genv;
 
-ListBox::ListBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::vector<std::string> values) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _values(values), _showlimit(_sizey/textheight), _showfirst(0), _selected(-1) { }
+ListBox::ListBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::vector<std::string> values) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _values(values), _showlimit(_sizey/textheight()), _showfirst(0), _selected(-1) { }
 
 bool ListBox::is_selected(int mx, int my)
 {
@@ -31,11 +31,11 @@ void ListBox::draw()
         {
             if (_showfirst+i < _values.size())
             {
-                gout << move_to(_posx+2, _posy+textheight*i-_sizey+gout.cascent()) << text(_values[i+_showfirst]);
+                gout << move_to(_posx+2, _posy+textheight()*i-_sizey+gout.cascent()) << text(_values[i+_showfirst]);
 
                 if (_showfirst+i == _selected)
                 {
-                    gout << move_to(_posx+2, _posy+textheight*i-_sizey+gout.cdescent()) << color(255, 255, 255) << box(_sizex, textheight) << color(0, 0, 0) << move_to(_posx+2, _posy+textheight*i-_sizey+gout.cascent()) << text(_values[i+_showfirst]) << color(255, 255, 255);
+                    gout << move_to(_posx+2, _posy+textheight()*i-_sizey+gout.cdescent()) << color(255, 255, 255) << box(_sizex, textheight()) << color(0, 0, 0) << move_to(_posx+2, _posy+textheight()*i-_sizey+gout.cascent()) << text(_values[i+_showfirst]) << color(255, 255, 255);
                 }
             }
         }
@@ -45,10 +45,10 @@ void ListBox::draw()
     {
         for (int i = 0; i < _values.size(); i++)
         {
-            gout << move_to(_posx+2, _posy+textheight*i-_sizey+gout.cascent()) << text(_values[i]);
+            gout << move_to(_posx+2, _posy+textheight()*i-_sizey+gout.cascent()) << text(_values[i]);
             if (i == _selected)
             {
-                gout << move_to(_posx+2, _posy+textheight*i-_sizey+gout.cdescent()) << color(255, 255, 255) << box(_sizex, textheight) << color(0, 0, 0) << move_to(_posx+2, _posy+textheight*i-_sizey+gout.cascent()) << text(_values[i]) << color(255, 255, 255);
+                gout << move_to(_posx+2, _posy+textheight()*i-_sizey+gout.cdescent()) << color(255, 255, 255) << box(_sizex, textheight()) << color(0, 0, 0) << move_to(_posx+2, _posy+textheight()*i-_sizey+gout.cascent()) << text(_values[i]) << color(255, 255, 255);
             }
         }
     }
@@ -64,13 +64,13 @@ void ListBox::event_handler(event ev)
         else if (ev.button == btn_wheeldown && _showfirst > 0) { _showfirst--; }
     }
 
-    if (ev.button == btn_left && ev.pos_y < textheight*_values.size()+(_posy-_sizey))
+    if (ev.button == btn_left && ev.pos_y < textheight()*_values.size()+(_posy-_sizey))
     {
-        for (int i = textheight*_showlimit; i >= 0; i-=textheight)
+        for (int i = textheight()*_showlimit; i >= 0; i-=textheight())
         {
             if (ev.pos_y < _posy-i)
             {
-                _selected = _showlimit-(i/textheight)+_showfirst; i = -1;
+                _selected = _showlimit-(i/textheight())+_showfirst; i = -1;
                 if (_selected > _values.size() || _selected < 0) { _selected = -1; }
             }
         }

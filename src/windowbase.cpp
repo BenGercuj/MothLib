@@ -4,17 +4,9 @@
 
 using namespace genv;
 
-WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY), _playerid(1)
+WindowBase::WindowBase(int winX, int winY) : XX(winX), YY(winY)
 {
-    for (int i = 0; i < 20; i++)
-    {
-        std::vector<int> holder;
-        for (int j = 0; j < 20; j++)
-        {
-            holder.push_back(0);
-        }
-        _field.push_back(holder);
-    }
+
 }
 
 void WindowBase::event_loop() {
@@ -34,71 +26,10 @@ void WindowBase::event_loop() {
             if (!did_event) { focus = -1; }
         }
 
-        if (focus!=-1 && widget_list[focus]) { widget_list[focus]->event_handler(ev); }
-
-//        if (focus != -1 && did_event)
-//        {
-//            std::vector<std::string> val;
-//            val = widget_list[focus]->returnval();
-
-//            std::ofstream of("log.txt", std::_S_app);
-//            if (val[1] != "void") { of << "Registered value: " << val[0] << ", type: " << val[1] << ", from: " << val[2] << std::endl; }
-//            did_event = false;
-
-//            of.close();
-//        }
-
-//        for (WidgetBase *w: widget_list)
-//        {
-//            if (w->_name == "st_result") { w->event_handler(ev); }
-//        }
-
-        for (WidgetBase * w : widget_list) { w->draw(); }
-
-        // Checker
-        int counter = 0;
-        for (size_t i = 0; i < _field.size(); i++)
-        {
-            for (size_t j = 0; j < _field[i].size(); j++)
-            {
-                if (_field[i][j] != 0)
-                {
-                    counter = 1;
-                    int holder = _field[i][j];
-                    if (20-(int)i >= 5)
-                    {
-                        for (int x = i+1; x < i+5; x++)
-                        {
-                            if (_field[x][j] == holder)
-                            {
-                                counter++;
-                            }
-
-                            else { break; }
-                        }
-                    }
-                    if (counter >= 5) { std::cout << "w i n"; i = _field.size(); break; }
-                    counter = 1;
-
-                    if (20-(int)j >= 5)
-                    {
-                        for (int x = j+1; x < j+5; x++)
-                        {
-                            if (_field[i][x] == holder)
-                            {
-                                counter++;
-                            }
-
-                            else { break; }
-                        }
-                    }
-                    if (counter >= 5) { std::cout << "w i n"; i = _field.size(); break; }
-                    counter = 1;
-                }
-            }
-        }
+        if (focus != -1) { widget_list[focus]->event_handler(ev); }
 
         gout << refresh;
+        for (WidgetBase * w : widget_list) { w->draw(); }
     }
 }
 

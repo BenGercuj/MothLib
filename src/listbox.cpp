@@ -1,6 +1,7 @@
 // Switch on word wrap and prepare for a spaghetti
 
 #include "../include/listbox.hpp"
+#include <iostream>
 
 using namespace genv;
 

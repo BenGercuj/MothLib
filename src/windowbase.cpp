@@ -1,5 +1,6 @@
 #include "../include/windowbase.hpp"
 #include <fstream>
+#include <iostream>
 
 using namespace genv;
 
@@ -54,11 +55,30 @@ void WindowBase::event_loop() {
 
         for (WidgetBase * w : widget_list) { w->draw(); }
 
+        int counter = 0;
         for (size_t i = 0; i < _field.size(); i++)
         {
             for (size_t j = 0; j < _field[i].size(); j++)
             {
+                if (_field[i][j] != 0)
+                {
+                    counter = 1;
+                    int holder = _field[i][j];
+                    if (20-(int)i >= 5)
+                    {
+                        for (int x = i+1; x < i+5; x++)
+                        {
+                            if (_field[x][j] == holder)
+                            {
+                                counter++;
+                            }
 
+                            else { break; }
+                        }
+                    }
+                    if (counter >= 5) { std::cout << "w i n"; }
+                    counter = 0;
+                }
             }
         }
 

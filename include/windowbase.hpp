@@ -17,6 +17,8 @@ class WindowBase
 
         void event_loop();
         void add_widget(WidgetBase *w);
+        void Draw();
+        void Winner(int id);
 };
 
 #endif // WINDOWBASE_HPP

@@ -77,7 +77,7 @@ void WindowBase::event_loop() {
                             else { break; }
                         }
                     }
-                    if (counter >= 5) { std::cout << "w i n"; i = _field.size(); break; }
+                    if (counter >= 5) { Winner(holder); break; }
                     counter = 1;
 
                     if (20-(int)j >= 5)
@@ -92,7 +92,7 @@ void WindowBase::event_loop() {
                             else { break; }
                         }
                     }
-                    if (counter >= 5) { std::cout << "w i n"; i = _field.size(); break; }
+                    if (counter >= 5) { Winner(holder); break; }
                     counter = 1;
                 }
             }
@@ -103,3 +103,32 @@ void WindowBase::event_loop() {
 }
 
 void WindowBase::add_widget(WidgetBase *w) { widget_list.push_back(w); }
+
+void WindowBase::Draw()
+{
+    for (size_t i = 0; i < widget_list.size(); i++)
+    {
+        delete widget_list[i];
+        widget_list[i] = 0;
+    }
+
+    widget_list.clear();
+
+    genv::gout << genv::move_to(1, YY-1) << genv::color(0, 0, 0) << genv::box_to(XX-1, 0) << genv::color(255, 255, 255) << genv::move_to(XX/2, YY/2) << genv::text("Draw!");
+}
+
+void WindowBase::Winner(int id)
+{
+    for (size_t i = 0; i < widget_list.size(); i++)
+    {
+        delete widget_list[i];
+        widget_list[i] = 0;
+    }
+
+    widget_list.clear();
+
+    genv::gout << genv::move_to(1, YY-1) << genv::color(0, 0, 0) << genv::box_to(XX-1, 0) << genv::color(255, 255, 255) << genv::move_to(XX/2, YY/2);
+
+    if (id == 1) { genv::gout << genv::text("Player X wins!"); }
+    else if (id == -1) { genv::gout << genv::text("Player O wins!"); }
+}

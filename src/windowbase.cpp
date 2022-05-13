@@ -94,6 +94,21 @@ void WindowBase::event_loop() {
                     }
                     if (counter >= 5) { Winner(holder); break; }
                     counter = 1;
+
+                    if (20-(int)j >= 5 && 20-(int)i >= 5)
+                    {
+                        for (int x = 1; x < 5; x++)
+                        {
+                            if (_field[i+x][j+x] == holder)
+                            {
+                                counter++;
+                            }
+
+                            else { break; }
+                        }
+                    }
+                    if (counter >= 5) { Winner(holder); break; }
+                    counter = 1;
                 }
             }
         }

@@ -6,16 +6,16 @@ Window::Window(int winX, int winY) : WindowBase(winX, winY)
 {
     st = new StaticText(this, XX/2-genv::gout.twidth("Amoeba")/2, YY/4, genv::gout.twidth("Amoeba"), genv::gout.cascent()+genv::gout.cdescent(), "st_title", "Amoeba");
 
-    btn = new Button(this, XX/2-XX/4, YY/2, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_start", "Start with two players", [this](int p1, int p2, int p3, std::string p4){; InitGame(false);}, -1, -1);
+    btn = new Button(this, XX/2-XX/4, YY/2, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_start", "Start with two players", [this](int p1, int p2, int p3, std::string p4){; InitGame();}, -1, -1);
 
-    btn = new Button(this, XX/2-XX/4, YY/2+50, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_startalone", "Start with computer", [this](int p1, int p2, int p3, std::string p4){InitGame(true);}, -1, -1);
+    btn = new Button(this, XX/2-XX/4, YY/2+50, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_startalone", "Start with computer", [this](int p1, int p2, int p3, std::string p4){InitGame(); _withComp = true;}, -1, -1);
 
     btn = new Button(this, XX/2-XX/4, YY/2+100, XX/2, genv::gout.cascent()+genv::gout.cdescent()+10, "btn_exit", "Exit", [](int p1, int p2, int p3, std::string p4){exit(0);}, -1, -1);
 
     for (WidgetBase *w: widget_list) { w->draw(); }
 }
 
-void Window::InitGame(bool withComp)
+void Window::InitGame()
 {
     for (size_t i = 0; i < widget_list.size(); i++)
     {
@@ -27,10 +27,10 @@ void Window::InitGame(bool withComp)
 
     genv::gout << genv::move_to(1, YY-1) << genv::color(0, 0, 0) << genv::box_to(XX-1, 0) << genv::color(255, 255, 255) << genv::refresh;
 
-    StartGame(withComp);
+    StartGame();
 }
 
-void Window::StartGame(bool withComp)
+void Window::StartGame()
 {
     std::vector<std::vector<int>> *field = &_field;
 

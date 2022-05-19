@@ -2,6 +2,8 @@
 
 #include "../include/listbox.hpp"
 
+#include <iostream> // debug, delete when done
+
 using namespace genv;
 
 ListBox::ListBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::vector<std::string> values) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _values(values), _showlimit(_sizey/textheight()), _showfirst(0), _selected(-1) { }
@@ -74,6 +76,10 @@ void ListBox::event_handler(event ev)
                 if (_selected > _values.size() || _selected < 0) { _selected = -1; }
             }
         }
+
+        // debug, delete when done
+        if (_selected != -1) { std::cout << _values[_selected] << "\n"; }
+        else { std::cout << "none\n"; }
     }
 
     _focused = true;

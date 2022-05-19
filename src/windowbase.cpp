@@ -1,6 +1,4 @@
 #include "../include/windowbase.hpp"
-#include <fstream>
-#include <iostream>
 
 using namespace genv;
 
@@ -27,6 +25,7 @@ void WindowBase::event_loop()
         if (focus!=-1 && widget_list[focus]) { widget_list[focus]->event_handler(ev); }
 
         for (WidgetBase * w : widget_list) { w->draw(); }
+        gout << refresh;
     }
 }
 

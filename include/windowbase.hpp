@@ -3,6 +3,8 @@
 
 #include "widgetbase.hpp"
 #include <vector>
+#include <fstream>
+#include <iostream>
 
 class WindowBase
 {

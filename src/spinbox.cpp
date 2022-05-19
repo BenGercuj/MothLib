@@ -1,5 +1,4 @@
 #include "../include/spinbox.hpp"
-#include <vector>
 
 using namespace genv;
 

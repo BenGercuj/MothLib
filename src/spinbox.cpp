@@ -2,7 +2,7 @@
 
 using namespace genv;
 
-SpinBox::SpinBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, int val, int minval, int maxval) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _val(val), _minval(minval), _maxval(maxval), _changed(false) { }
+SpinBox::SpinBox(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, int val, int minval, int maxval) : WidgetBase(mainw, posx, posy, sizex, sizey, name), _val(val), _minval(minval), _maxval(maxval), _changed(false) { if (_val > _maxval || _val < _minval) { _val = _minval; } }
 
 bool SpinBox::is_selected(int mx, int my)
 {

@@ -16,10 +16,6 @@ class Window : public WindowBase
 
     public:
         Window(int winX, int winY);
-        void InitGame();
-        void StartGame();
-        void Draw();
-        void Winner(int id);
 };
 
 #endif // WINDOW_HPP

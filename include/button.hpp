@@ -7,12 +7,10 @@
 class Button : public WidgetBase
 {
     bool _value, _changed; std::string _text;
-    std::function<void(int, int, int&, std::string&)> _f;
-    int _fieldposx, _fieldposy;
-    int _whowasit;
+    std::function<void()> _f;
 
     public:
-        Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void(int, int, int&, std::string&)> f, int fieldposx, int fieldposy);
+        Button(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string text, std::function<void()> f);
 
         bool is_selected(int mx, int my);
         void draw();

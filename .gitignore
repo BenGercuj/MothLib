@@ -1,0 +1,14 @@
+GraphicsKitQt.pro
+GraphicsKitQt.pro.user
+GraphicsKitQt.pro.user.09f7f00
+LiberationSans-Regular.ttf
+SDL2.dll
+SDL2/
+SDL2_ttf.dll
+graphics.hpp
+libSDL2.dll.a
+libSDL2_ttf.dll.a
+libfreetype-6.dll
+libgraphics64.a
+libgraphics64d.a
+zlib1.dll

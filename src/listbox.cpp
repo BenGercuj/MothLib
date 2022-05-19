@@ -62,8 +62,8 @@ void ListBox::event_handler(event ev)
 {
     if (_showlimit < _values.size())
     {
-        if (ev.button == btn_wheelup && _showfirst < _values.size() && _showfirst < _showlimit) { _showfirst++; }
-        else if (ev.button == btn_wheeldown && _showfirst > 0) { _showfirst--; }
+        if (ev.button == btn_wheeldown && _showfirst < _values.size() && _showfirst < _showlimit) { _showfirst++; }
+        else if (ev.button == btn_wheelup && _showfirst > 0) { _showfirst--; }
     }
 
     if (ev.button == btn_left && ev.pos_y < textheight()*_values.size()+(_posy-_sizey))

@@ -73,7 +73,7 @@ void ListBox::event_handler(event ev)
             if (ev.pos_y < _posy-i)
             {
                 _selected = _showlimit-(i/textheight())+_showfirst; i = -1;
-                if (_selected > _values.size() || _selected < 0) { _selected = -1; }
+                if (_selected >= _values.size() || _selected < 0) { _selected = -1; }
             }
         }
 

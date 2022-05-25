@@ -6,17 +6,14 @@
 class StaticText : public WidgetBase
 {
     std::string _value;
-    int _limit;
 
     public:
-        StaticText(WindowBase *mainw, int posx, int posy, int sizex, int sizey, std::string name, std::string val);
+        StaticText(WindowBase *mainw, int posx, int posy, std::string name, std::string val);
 
         bool is_selected(int mx, int my);
         void draw();
         void event_handler(genv::event ev);
         std::vector<std::string> returnval();
-
-        void setvalue(std::string newval);
         std::string getvalue();
 };
 

@@ -6,6 +6,7 @@
 #include "listbox.hpp"
 #include "button.hpp"
 #include "statictext.hpp"
+#include "textctrl.hpp"
 
 class Window : public WindowBase
 {
@@ -13,6 +14,7 @@ class Window : public WindowBase
     ListBox *lb;
     Button *btn;
     StaticText *st;
+    TextCtrl *tctrl;
 
     public:
         Window(int winX, int winY);
